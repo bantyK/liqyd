@@ -17,6 +17,5 @@ public class AddressActivity extends BaseActivity {
     @Override
     protected int getLayoutResource() {
         return R.layout.layout_address_activity;
-
     }
 }

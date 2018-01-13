@@ -1,6 +1,23 @@
 <resources>
     <string name="app_name">LIQYD</string>
-    <string name="address">ADDRESS</string>
+    <string name="address">Address</string>
     <string name="order_details">ORDER DETAILS</string>
     <string name="layout_payment_activity">PAYMENT</string>
+    <string name="mobile_number">Mobile No</string>
+    <string name="password">Password</string>
+    <string name="login">LOG IN</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="create_a_new_account">CREATE A NEW ACCOUNT</string>
+    <string name="register">REGISTER</string>
+    <string name="name">Name</string>
+    <string name="email">Email Id</string>
+    <string name="terms_conditions"><![CDATA[I have read and agree to the Terms & Conditions]]></string>
+    <string name="registration">REGISTRATION</string>
+    <string name="delivery_closed_message">Delivery Closed between 12:00 PM - 4 PM</string>
+    <string name="address1">Address1</string>
+    <string name="landmark">Landmark</string>
+    <string name="pune">Pune</string>
+    <string name="maharashtra">Maharashtra</string>
+    <string name="save_default_address">Save as a default address?</string>
+    <string name="pay">PAY</string>
 </resources>
