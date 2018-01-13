@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">LIQYD</string>
+    <string name="address">ADDRESS</string>
+    <string name="order_details">ORDER DETAILS</string>
+    <string name="layout_payment_activity">PAYMENT</string>
 </resources>
