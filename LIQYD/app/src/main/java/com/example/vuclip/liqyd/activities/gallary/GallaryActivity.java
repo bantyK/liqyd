@@ -12,6 +12,7 @@ public class GallaryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_gallary_activity);
         configureToolbar(getString(R.string.app_name), false);
+
     }
 
     @Override
