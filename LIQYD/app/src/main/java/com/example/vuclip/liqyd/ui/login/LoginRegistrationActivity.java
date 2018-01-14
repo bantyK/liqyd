@@ -1,11 +1,11 @@
-package com.example.vuclip.liqyd.activities.login;
+package com.example.vuclip.liqyd.ui.login;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.example.vuclip.liqyd.R;
-import com.example.vuclip.liqyd.activities.BaseActivity;
+import com.example.vuclip.liqyd.ui.BaseActivity;
 
 public class LoginRegistrationActivity extends BaseActivity {
 

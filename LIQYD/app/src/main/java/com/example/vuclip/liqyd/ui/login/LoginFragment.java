@@ -1,4 +1,4 @@
-package com.example.vuclip.liqyd.activities.login;
+package com.example.vuclip.liqyd.ui.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.login.LoginRegistrationActivity">
+        <activity android:name=".ui.login.LoginRegistrationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.gallary.GallaryActivity" />
-        <activity android:name=".activities.address.AddressActivity" />
-        <activity android:name=".activities.order_details.OrderDetailsActivity" />
-        <activity android:name=".activities.payment.PaymentActivity" />
+        <activity android:name=".ui.gallary.GallaryActivity" />
+        <activity android:name=".ui.address.AddressActivity" />
+        <activity android:name=".ui.order_details.OrderDetailsActivity" />
+        <activity android:name=".ui.payment.PaymentActivity" />
     </application>
 
 </manifest>

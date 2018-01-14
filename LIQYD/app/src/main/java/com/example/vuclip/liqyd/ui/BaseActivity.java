@@ -1,4 +1,4 @@
-package com.example.vuclip.liqyd.activities;
+package com.example.vuclip.liqyd.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

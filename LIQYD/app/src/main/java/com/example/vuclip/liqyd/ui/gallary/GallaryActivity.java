@@ -1,9 +1,9 @@
-package com.example.vuclip.liqyd.activities.gallary;
+package com.example.vuclip.liqyd.ui.gallary;
 
 import android.os.Bundle;
 
 import com.example.vuclip.liqyd.R;
-import com.example.vuclip.liqyd.activities.BaseActivity;
+import com.example.vuclip.liqyd.ui.BaseActivity;
 
 public class GallaryActivity extends BaseActivity {
 

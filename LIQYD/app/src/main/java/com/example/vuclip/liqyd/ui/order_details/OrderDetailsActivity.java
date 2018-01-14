@@ -1,9 +1,9 @@
-package com.example.vuclip.liqyd.activities.order_details;
+package com.example.vuclip.liqyd.ui.order_details;
 
 import android.os.Bundle;
 
 import com.example.vuclip.liqyd.R;
-import com.example.vuclip.liqyd.activities.BaseActivity;
+import com.example.vuclip.liqyd.ui.BaseActivity;
 
 public class OrderDetailsActivity extends BaseActivity {
 

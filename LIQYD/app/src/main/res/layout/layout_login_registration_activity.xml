@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vuclip.liqyd.activities.login.LoginRegistrationActivity">
+    tools:context="com.example.vuclip.liqyd.ui.login.LoginRegistrationActivity">
 
     <include
         android:id="@+id/toolbar"
