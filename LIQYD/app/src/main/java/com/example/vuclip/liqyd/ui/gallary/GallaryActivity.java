@@ -38,7 +38,6 @@ public class GallaryActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         new NavigationDrawerHelper(this,
-                getSupportFragmentManager(),
                 drawer,
                 navigationView
         ).setUpNavigationMenu(navigationView, drawer);

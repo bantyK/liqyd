@@ -1,6 +1,7 @@
 package com.example.vuclip.liqyd.helper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,15 +13,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vuclip.liqyd.R;
+import com.example.vuclip.liqyd.ui.MenuHandingActivity;
 import com.example.vuclip.liqyd.ui.gallary.GallaryActivity;
-import com.example.vuclip.liqyd.ui.gallary.OrderHistoryFragment;
-import com.example.vuclip.liqyd.ui.gallary.TermsConditionsFragment;
 
 /**
  * Created by Banty on 14/01/18.
@@ -28,10 +29,11 @@ import com.example.vuclip.liqyd.ui.gallary.TermsConditionsFragment;
  */
 
 public class NavigationDrawerHelper {
+    private static final String TAG = "NavigationDrawerHelper";
     //fragment tags
-    private static final String TAG_ORDER_HISTORY = "order_history";
-    private static final String TAG_TERMS_CONDITIONS = "terms_conditions";
-    private final FragmentManager fragmentManager;
+    public static final String TAG_ORDER_HISTORY = "order_history";
+    public static final String TAG_TERMS_CONDITIONS = "terms_conditions";
+    public static final String INTENT_KEY = "intent.key";
     private final DrawerLayout drawer;
     private final NavigationView navigationView;
     private Handler mHandler;
@@ -40,9 +42,8 @@ public class NavigationDrawerHelper {
     private final Activity detailActivity;
 
 
-    public NavigationDrawerHelper(Activity context, FragmentManager supportFragmentManager, DrawerLayout drawer, NavigationView navigationView) {
+    public NavigationDrawerHelper(Activity context, DrawerLayout drawer, NavigationView navigationView) {
         detailActivity = context;
-        this.fragmentManager = supportFragmentManager;
         this.drawer = drawer;
         mHandler = new Handler();
         this.navigationView = navigationView;
@@ -123,23 +124,19 @@ public class NavigationDrawerHelper {
 
         setToolbarTitle();
 
-        if (fragmentManager.findFragmentByTag(CURRENT_TAG) != null) {
-            drawer.closeDrawers();
-            return;
-        }
+//        if (fragmentManager.findFragmentByTag(CURRENT_TAG) != null) {
+//            drawer.closeDrawers();
+//            return;
+//        }
 
         Runnable mPendingRunnable = new Runnable() {
             @Override
             public void run() {
                 // update the main content by replacing fragments
-                Fragment fragment = getFragment();
-                if (fragment != null) {
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                            android.R.anim.fade_out);
-                    fragmentTransaction.replace(R.id.fragment_container, fragment, CURRENT_TAG);
-                    fragmentTransaction.commitAllowingStateLoss();
-                }
+                Log.d(TAG, "run: current nav index : " + navItemIndex);
+                Intent intent = new Intent(detailActivity, MenuHandingActivity.class);
+                intent.putExtra(INTENT_KEY, navItemIndex);
+                detailActivity.startActivity(intent);
             }
         };
 
@@ -147,21 +144,6 @@ public class NavigationDrawerHelper {
         drawer.closeDrawers();
         detailActivity.invalidateOptionsMenu();
 
-    }
-
-    @Nullable
-    private Fragment getFragment() {
-        switch (navItemIndex) {
-            case 0:
-                return new OrderHistoryFragment();
-            case 1:
-                return new TermsConditionsFragment();
-            case 2:
-                Toast.makeText(detailActivity, "Sign out clicked", Toast.LENGTH_SHORT).show();
-                //sign out user here
-                return null;
-        }
-        return null;
     }
 
     private void selectNavMenu() {
