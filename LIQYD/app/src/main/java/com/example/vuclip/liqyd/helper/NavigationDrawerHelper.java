@@ -144,9 +144,7 @@ public class NavigationDrawerHelper {
         };
 
         mHandler.post(mPendingRunnable);
-
         drawer.closeDrawers();
-
         detailActivity.invalidateOptionsMenu();
 
     }

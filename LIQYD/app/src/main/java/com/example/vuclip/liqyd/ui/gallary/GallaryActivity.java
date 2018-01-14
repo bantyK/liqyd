@@ -19,7 +19,7 @@ public class GallaryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gallary_layout);
+        setContentView(R.layout.layout_gallary);
         initDrawer();
         initSpinner();
     }
@@ -47,7 +47,7 @@ public class GallaryActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.layout_gallary_activity;
+        return R.layout.layout_gallary;
     }
 
 }
