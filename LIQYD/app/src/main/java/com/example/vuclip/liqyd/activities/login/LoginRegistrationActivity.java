@@ -13,7 +13,7 @@ public class LoginRegistrationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login_registration_activity);
-        configureToolbar(getString(R.string.registration));
+        configureToolbar(getString(R.string.registration), false);
 
         loadFragment(new LoginFragment());
 

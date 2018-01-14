@@ -1,6 +1,5 @@
 package com.example.vuclip.liqyd.activities.payment;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.vuclip.liqyd.R;
@@ -12,7 +11,7 @@ public class PaymentActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_payment_activity);
-        configureToolbar(getString(R.string.layout_payment_activity));
+        configureToolbar(getString(R.string.layout_payment_activity), true);
     }
 
     @Override

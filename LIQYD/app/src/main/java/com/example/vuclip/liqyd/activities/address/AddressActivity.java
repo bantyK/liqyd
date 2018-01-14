@@ -11,7 +11,7 @@ public class AddressActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_address_activity);
-        configureToolbar(getString(R.string.address));
+        configureToolbar(getString(R.string.address), true);
     }
 
     @Override
