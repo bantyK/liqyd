@@ -34,21 +34,18 @@ public class NavigationDrawerHelper {
     private final FragmentManager fragmentManager;
     private final DrawerLayout drawer;
     private final NavigationView navigationView;
-    private final Toolbar toolbar;
     private Handler mHandler;
     private String CURRENT_TAG;
     private int navItemIndex = 0;
-    private final Activity mContext;
+    private final Activity detailActivity;
 
 
-    public NavigationDrawerHelper(Activity context, FragmentManager supportFragmentManager, DrawerLayout drawer, NavigationView navigationView, Toolbar toolbar) {
-        mContext = context;
+    public NavigationDrawerHelper(Activity context, FragmentManager supportFragmentManager, DrawerLayout drawer, NavigationView navigationView) {
+        detailActivity = context;
         this.fragmentManager = supportFragmentManager;
         this.drawer = drawer;
         mHandler = new Handler();
         this.navigationView = navigationView;
-        this.toolbar = toolbar;
-
         loadNavigationHeader();
     }
 
@@ -95,7 +92,7 @@ public class NavigationDrawerHelper {
             }
         });
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(mContext, drawer, toolbar, R.string.open_drawer, R.string.close_drawer) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(detailActivity, drawer, R.string.open_drawer, R.string.close_drawer) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -111,10 +108,14 @@ public class NavigationDrawerHelper {
         };
 
         //Setting the actionbarToggle to drawer layout
-        drawer.setDrawerListener(actionBarDrawerToggle);
+        drawer.addDrawerListener(actionBarDrawerToggle);
 
-        //calling sync state is necessary or else your hamburger icon wont show up
+        //calling sync state is necessary or else them hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+
+        ActionBar supportActionBar = ((GallaryActivity) detailActivity).getSupportActionBar();
+
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void loadFragment() {
@@ -146,7 +147,7 @@ public class NavigationDrawerHelper {
 
         drawer.closeDrawers();
 
-        mContext.invalidateOptionsMenu();
+        detailActivity.invalidateOptionsMenu();
 
     }
 
@@ -158,7 +159,7 @@ public class NavigationDrawerHelper {
             case 1:
                 return new TermsConditionsFragment();
             case 2:
-                Toast.makeText(mContext, "Sign out clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(detailActivity, "Sign out clicked", Toast.LENGTH_SHORT).show();
                 //sign out user here
                 return null;
         }
@@ -170,7 +171,7 @@ public class NavigationDrawerHelper {
     }
 
     private void setToolbarTitle() {
-        ActionBar supportActionBar = ((GallaryActivity) mContext).getSupportActionBar();
+        ActionBar supportActionBar = ((GallaryActivity) detailActivity).getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setTitle("Fragment : " + navItemIndex);
     }

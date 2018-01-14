@@ -28,5 +28,12 @@
     <string name="open_drawer">open_drawer</string>
     <string name="close_drawer">close_drawer</string>
 
+    <string-array name="delivery_areas">
+        <item>Baner</item>
+        <item>Aundh</item>
+        <item>Wakad</item>
+        <item>Pimple Saudagar</item>
+        <item>Kharadi</item>
+    </string-array>
 
 </resources>
