@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bottle" />
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Bisleri 20 Ltr"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/text_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Rs 90"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="@color/text_color"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buy_button"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/appTheme"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/buy"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

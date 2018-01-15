@@ -27,6 +27,7 @@
     <string name="nav_sign_out">Sign Out</string>
     <string name="open_drawer">open_drawer</string>
     <string name="close_drawer">close_drawer</string>
+    <string name="buy">BUY</string>
 
     <string-array name="delivery_areas">
         <item>Baner</item>
