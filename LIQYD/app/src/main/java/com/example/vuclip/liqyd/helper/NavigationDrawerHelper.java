@@ -36,17 +36,19 @@ public class NavigationDrawerHelper {
     public static final String INTENT_KEY = "intent.key";
     private final DrawerLayout drawer;
     private final NavigationView navigationView;
+    private final ActionBarDrawerToggle actionBarDrawerToggle;
     private Handler mHandler;
     private String CURRENT_TAG;
     private int navItemIndex = 0;
     private final Activity detailActivity;
 
 
-    public NavigationDrawerHelper(Activity context, DrawerLayout drawer, NavigationView navigationView) {
+    public NavigationDrawerHelper(Activity context, DrawerLayout drawer, NavigationView navigationView, ActionBarDrawerToggle actionBarDrawerToggle) {
         detailActivity = context;
         this.drawer = drawer;
         mHandler = new Handler();
         this.navigationView = navigationView;
+        this.actionBarDrawerToggle = actionBarDrawerToggle;
         loadNavigationHeader();
     }
 
@@ -92,21 +94,6 @@ public class NavigationDrawerHelper {
                 return true;
             }
         });
-
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(detailActivity, drawer, R.string.open_drawer, R.string.close_drawer) {
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
-                super.onDrawerClosed(drawerView);
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
-                super.onDrawerOpened(drawerView);
-            }
-        };
 
         //Setting the actionbarToggle to drawer layout
         drawer.addDrawerListener(actionBarDrawerToggle);
