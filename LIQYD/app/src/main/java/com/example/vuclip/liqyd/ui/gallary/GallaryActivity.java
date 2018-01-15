@@ -15,8 +15,6 @@ import android.widget.Spinner;
 import com.example.vuclip.liqyd.R;
 import com.example.vuclip.liqyd.adapters.GallaryAdapter;
 import com.example.vuclip.liqyd.helper.NavigationDrawerHelper;
-import com.example.vuclip.liqyd.models.Product;
-import com.example.vuclip.liqyd.repository.DataProvider;
 import com.example.vuclip.liqyd.repository.Repository;
 import com.example.vuclip.liqyd.ui.BaseActivity;
 
