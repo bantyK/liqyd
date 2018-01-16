@@ -96,9 +96,10 @@
                 android:textSize="16sp" />
 
             <Button
+                android:id="@+id/quantity_minus_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="28dp"
                 android:background="@drawable/circle"
                 android:paddingBottom="4dp"
                 android:text="-"
@@ -115,6 +116,7 @@
                 android:textSize="16sp" />
 
             <Button
+                android:id="@+id/quantity_plus_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="20dp"
