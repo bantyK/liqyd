@@ -28,7 +28,13 @@
     <string name="open_drawer">open_drawer</string>
     <string name="close_drawer">close_drawer</string>
     <string name="buy">BUY</string>
-    <string name="order_details_deposit_message">Rs 150 will be charged for not returning Empty Can which is refundable.\nMinimum order - 2 Water cans</string>
+    <string name="order_details_deposit_message">Rs 150 will be charged for not returning empty can which is refundable.\nMinimum order - 2 Water cans</string>
+    <string name="order_quantity">Order Quantity</string>
+    <string name="delivery_slots">Delivery Slots</string>
+    <string name="delivery_type">Delivery Type</string>
+    <string name="delivery_time">Delivery Time</string>
+    <string name="total_price">Total Price</string>
+    <string name="proceed_to_pay">Proceed to pay</string>
 
     <string-array name="delivery_areas">
         <item>Baner</item>
@@ -36,6 +42,26 @@
         <item>Wakad</item>
         <item>Pimple Saudagar</item>
         <item>Kharadi</item>
+    </string-array>
+
+    <string-array name="delivery_slots">
+        <item>Baner</item>
+        <item>Aundh</item>
+        <item>Wakad</item>
+        <item>Pimple Saudagar</item>
+        <item>Kharadi</item>
+    </string-array>
+
+    <string-array name="delivery_types">
+        <item>Normal</item>
+        <item>Fast</item>
+    </string-array>
+
+    <string-array name="delivery_time">
+        <item>Morning</item>
+        <item>Noon</item>
+        <item>Evening</item>
+        <item>Night</item>
     </string-array>
 
 </resources>
