@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 
 import com.example.vuclip.liqyd.R;
 import com.example.vuclip.liqyd.ui.BaseActivity;
+import com.example.vuclip.liqyd.ui.login.login.LoginFragment;
 
 public class LoginRegistrationActivity extends BaseActivity {
 

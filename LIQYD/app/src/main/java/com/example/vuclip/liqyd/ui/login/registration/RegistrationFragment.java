@@ -1,4 +1,4 @@
-package com.example.vuclip.liqyd.ui.login;
+package com.example.vuclip.liqyd.ui.login.registration;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,14 +13,14 @@ import com.example.vuclip.liqyd.R;
  * Created by Banty on 13/01/18.
  */
 
-public class LoginFragment extends Fragment {
+public class RegistrationFragment extends Fragment {
 
-    public LoginFragment() {
+    public RegistrationFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_login_fragment, container, false);
+        return inflater.inflate(R.layout.layout_registration_fragment, container, false);
     }
 }
