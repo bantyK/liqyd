@@ -35,6 +35,16 @@
     <string name="delivery_time">Delivery Time</string>
     <string name="total_price">Total Price</string>
     <string name="proceed_to_pay">Proceed to pay</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="change_address">Change Address</string>
+    <string name="product_details">Product Details</string>
+    <string name="price_details">Price Details</string>
+    <string name="price_1_item">Price (1 item)</string>
+    <string name="order_total">Order Total</string>
+    <string name="amount_payable">Amount Payable</string>
+    <string name="promo_code">Promo Code</string>
+    <string name="place_order">Place order</string>
+    <string name="enter_promo_code">Enter Promo Code Here</string>
 
     <string-array name="delivery_areas">
         <item>Baner</item>
