@@ -17,12 +17,12 @@ import com.example.vuclip.liqyd.repository.DataProvider;
  * Created by Banty on 15/01/18.
  */
 
-public class GallaryAdapter extends RecyclerView.Adapter<GallaryAdapter.ViewHolder> {
+public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
 
     private final DataProvider mDataProvider;
     private final Context mContext;
 
-    public GallaryAdapter(DataProvider dataProvider, Context context) {
+    public GalleryAdapter(DataProvider dataProvider, Context context) {
         mDataProvider = dataProvider;
         mContext = context;
     }

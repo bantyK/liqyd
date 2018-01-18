@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.vuclip.liqyd.R;
-import com.example.vuclip.liqyd.adapters.GallaryAdapter;
+import com.example.vuclip.liqyd.adapters.GalleryAdapter;
 import com.example.vuclip.liqyd.helper.NavigationDrawerHelper;
 import com.example.vuclip.liqyd.repository.Repository;
 import com.example.vuclip.liqyd.ui.BaseActivity;
@@ -75,7 +75,7 @@ public class GallaryActivity extends BaseActivity {
     private void displayProducts() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        GallaryAdapter adapter = new GallaryAdapter(new Repository().getDataProvider(), this);
+        GalleryAdapter adapter = new GalleryAdapter(new Repository().getDataProvider(), this);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);

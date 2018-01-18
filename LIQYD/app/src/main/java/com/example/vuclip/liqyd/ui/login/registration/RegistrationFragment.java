@@ -14,7 +14,7 @@ import com.example.vuclip.liqyd.R;
  */
 
 public class RegistrationFragment extends Fragment {
-
+    public static final String TAG = "RegistrationFragment";
     public RegistrationFragment() {
     }
 

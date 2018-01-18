@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vuclip.liqyd.R;
-import com.example.vuclip.liqyd.adapters.GallaryAdapter;
 import com.example.vuclip.liqyd.ui.gallary.GallaryActivity;
 
 /**
@@ -23,12 +22,10 @@ import com.example.vuclip.liqyd.ui.gallary.GallaryActivity;
 
 public class LoginFragment extends Fragment implements ILoginView {
 
-    private static final String TAG = "LoginFragment";
+    public static final String TAG = "LoginFragment";
 
-    private Button loginButton, registerButton;
-    private EditText mobileNumberEditText, passwordEditText;
-    private TextView forgotPasswordTextView;
-    private View.OnClickListener clickListener;
+    private EditText mobileNumberEditText;
+    private EditText passwordEditText;
 
     private LoginPresenter mLoginPresenter;
 
@@ -53,13 +50,12 @@ public class LoginFragment extends Fragment implements ILoginView {
     }
 
     private void initUIElements(View view) {
-        loginButton = view.findViewById(R.id.btn_login);
-        registerButton = view.findViewById(R.id.btn_register);
+        Button loginButton = view.findViewById(R.id.btn_login);
         mobileNumberEditText = view.findViewById(R.id.et_mobile_number);
         passwordEditText = view.findViewById(R.id.et_password);
-        forgotPasswordTextView = view.findViewById(R.id.tv_forgot_password);
+        TextView forgotPasswordTextView = view.findViewById(R.id.tv_forgot_password);
 
-        clickListener = new View.OnClickListener() {
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
@@ -68,17 +64,17 @@ public class LoginFragment extends Fragment implements ILoginView {
                         String password = passwordEditText.getText().toString();
                         mLoginPresenter.login(mobileNumber, password);
                         break;
-                    case R.id.btn_register:
-                        Log.d(TAG, "onClick: register button clicked");
+
+                    case R.id.tv_forgot_password:
+                        //handle forgot password here
                         break;
                 }
             }
         };
 
         loginButton.setOnClickListener(clickListener);
-        registerButton.setOnClickListener(clickListener);
+        forgotPasswordTextView.setOnClickListener(clickListener);
     }
-
 
     @Override
     public void registerPresenter() {

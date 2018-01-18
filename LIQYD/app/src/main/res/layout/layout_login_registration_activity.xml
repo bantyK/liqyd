@@ -15,4 +15,16 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar" />
 
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/appTheme"
+        android:text="@string/create_a_new_account"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:typeface="sans" />
+
 </RelativeLayout>
