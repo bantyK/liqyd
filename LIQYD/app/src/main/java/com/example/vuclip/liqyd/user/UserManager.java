@@ -1,5 +1,10 @@
 package com.example.vuclip.liqyd.user;
 
+import android.text.TextUtils;
+
+import com.example.vuclip.liqyd.helper.SharedPrefHelper;
+import com.example.vuclip.liqyd.helper.SharedPrefKeys;
+
 /**
  * Created by Banty on 17/01/18.
  */
@@ -20,7 +25,23 @@ public class UserManager {
 
     public static boolean validateUser(String mobileNumber, String password) {
         //hardcoding for now
-        return mobileNumber.equalsIgnoreCase("123") &&
-                password.equals("test");
+        return TextUtils.equals(mobileNumber,SharedPrefHelper.getPref(UserConstants.USER_MOBILE, null)) &&
+                TextUtils.equals(password,SharedPrefHelper.getPref(UserConstants.USER_PASSWORD, null));
     }
+
+    public static void registerUser(String name, String mobile, String email, String password) {
+        SharedPrefHelper.putPref(UserConstants.USER_NAME, name);
+        SharedPrefHelper.putPref(UserConstants.USER_MOBILE, mobile);
+        SharedPrefHelper.putPref(UserConstants.USER_EMAIL, email);
+        SharedPrefHelper.putPref(UserConstants.USER_PASSWORD, password);
+    }
+
+    /*
+    * loginStatus = "true" -> login successful
+    * loginStatus = "false" -> login successful
+    * */
+    public void updateLoginStatusInSharedPref(String loginStatus) {
+        SharedPrefHelper.putPref(SharedPrefKeys.LOGIN_STATUS, loginStatus);
+    }
+
 }

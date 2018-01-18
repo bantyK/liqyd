@@ -7,7 +7,7 @@ package com.example.vuclip.liqyd.ui.login.login;
 public interface ILoginPresenter {
     void login(String mobile, String password);
 
-    void updateLoginStatusInSharedPref(String loggedIn);
-
     boolean checkUserLogin();
+
+    boolean validEntries(String mobileNumber, String password);
 }

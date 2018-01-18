@@ -1,5 +1,7 @@
 package com.example.vuclip.liqyd.ui.login.login;
 
+import android.text.TextUtils;
+
 import com.example.vuclip.liqyd.helper.SharedPrefHelper;
 import com.example.vuclip.liqyd.helper.SharedPrefKeys;
 import com.example.vuclip.liqyd.user.UserConstants;
@@ -9,7 +11,7 @@ import com.example.vuclip.liqyd.user.UserManager;
  * Created by Banty on 17/01/18.
  */
 
-public class LoginPresenter implements ILoginPresenter{
+public class LoginPresenter implements ILoginPresenter {
 
     private final ILoginView loginView;
 
@@ -19,22 +21,22 @@ public class LoginPresenter implements ILoginPresenter{
 
 
     public void login(String mobileNumber, String password) {
-        if(UserManager.getInstance().validateUser(mobileNumber, password)) {
+        if (UserManager.getInstance().validateUser(mobileNumber, password)) {
             loginView.loginSuccess();
-            updateLoginStatusInSharedPref("true");
+            UserManager.getInstance().updateLoginStatusInSharedPref("true");
         } else {
             loginView.loginFailed();
-            updateLoginStatusInSharedPref("false");
+            UserManager.getInstance().updateLoginStatusInSharedPref("false");
         }
-    }
-
-    @Override
-    public void updateLoginStatusInSharedPref(String loginStatus) {
-        SharedPrefHelper.putPref(SharedPrefKeys.LOGIN_STATUS, loginStatus);
     }
 
     @Override
     public boolean checkUserLogin() {
         return SharedPrefHelper.isTrue(SharedPrefKeys.LOGIN_STATUS, "false");
+    }
+
+    @Override
+    public boolean validEntries(String mobileNumber, String password) {
+        return !(TextUtils.isEmpty(mobileNumber) && TextUtils.isEmpty(password));
     }
 }

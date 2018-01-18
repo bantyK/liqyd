@@ -5,5 +5,5 @@ package com.example.vuclip.liqyd.helper;
  */
 
 public interface SharedPrefKeys {
-    public static final String LOGIN_STATUS = "login.status";
+    String LOGIN_STATUS = "login.status";
 }

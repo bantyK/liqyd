@@ -62,7 +62,10 @@ public class LoginFragment extends Fragment implements ILoginView {
                     case R.id.btn_login:
                         String mobileNumber = mobileNumberEditText.getText().toString();
                         String password = passwordEditText.getText().toString();
-                        mLoginPresenter.login(mobileNumber, password);
+                        if (mLoginPresenter.validEntries(mobileNumber, password))
+                            mLoginPresenter.login(mobileNumber, password);
+                        else
+                            Toast.makeText(getContext(), "Please fill in all the details", Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.tv_forgot_password:
