@@ -12,8 +12,8 @@ import com.example.vuclip.liqyd.ui.BaseActivity;
 
 public class PaymentActivity extends BaseActivity {
 
-    CheckBox promoCodeCheckBox;
-    EditText promoCodeEditText;
+    private CheckBox promoCodeCheckBox;
+    private EditText promoCodeEditText;
     private ImageView backButton;
 
     @Override

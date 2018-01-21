@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.vuclip.liqyd.R;
 
@@ -14,12 +15,15 @@ import com.example.vuclip.liqyd.R;
  */
 
 public class TermsConditionsFragment extends Fragment {
+
+
     public TermsConditionsFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_terms_conditions, container, false);
+        View view = inflater.inflate(R.layout.layout_terms_conditions, container, false);
+        return view;
     }
 }

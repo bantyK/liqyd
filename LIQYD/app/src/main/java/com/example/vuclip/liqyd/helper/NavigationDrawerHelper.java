@@ -4,20 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.vuclip.liqyd.R;
 import com.example.vuclip.liqyd.ui.MenuHandingActivity;
@@ -90,7 +84,7 @@ public class NavigationDrawerHelper {
                     item.setChecked(true);
                 }
 
-                loadFragment();
+                loadFragment(navItemIndex);
                 return true;
             }
         });
@@ -106,15 +100,10 @@ public class NavigationDrawerHelper {
         supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void loadFragment() {
+    private void loadFragment(final int navItemIndex) {
         selectNavMenu();
 
         setToolbarTitle();
-
-//        if (fragmentManager.findFragmentByTag(CURRENT_TAG) != null) {
-//            drawer.closeDrawers();
-//            return;
-//        }
 
         Runnable mPendingRunnable = new Runnable() {
             @Override
@@ -138,6 +127,7 @@ public class NavigationDrawerHelper {
     }
 
     private void setToolbarTitle() {
+        // TODO: 21/01/18 set correct name to the toolbar according to the fragment loaded
         ActionBar supportActionBar = ((GallaryActivity) detailActivity).getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setTitle("Fragment : " + navItemIndex);

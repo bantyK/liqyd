@@ -25,23 +25,32 @@ public class UserManager {
 
     public static boolean validateUser(String mobileNumber, String password) {
         //hardcoding for now
-        return TextUtils.equals(mobileNumber,SharedPrefHelper.getPref(UserConstants.USER_MOBILE, null)) &&
-                TextUtils.equals(password,SharedPrefHelper.getPref(UserConstants.USER_PASSWORD, null));
+        return TextUtils.equals(mobileNumber, SharedPrefHelper.getPref(UserConstants.USER_MOBILE, null)) &&
+                TextUtils.equals(password, SharedPrefHelper.getPref(UserConstants.USER_PASSWORD, null));
     }
 
-    public static void registerUser(String name, String mobile, String email, String password) {
+    public static void updateUserProperties(String name, String mobile, String email, String password) {
         SharedPrefHelper.putPref(UserConstants.USER_NAME, name);
         SharedPrefHelper.putPref(UserConstants.USER_MOBILE, mobile);
         SharedPrefHelper.putPref(UserConstants.USER_EMAIL, email);
         SharedPrefHelper.putPref(UserConstants.USER_PASSWORD, password);
     }
 
-    /*
-    * loginStatus = "true" -> login successful
-    * loginStatus = "false" -> login successful
-    * */
+    /**
+     * loginStatus = "true" -> login successful
+     * loginStatus = "false" -> login successful
+     */
     public void updateLoginStatusInSharedPref(String loginStatus) {
         SharedPrefHelper.putPref(SharedPrefKeys.LOGIN_STATUS, loginStatus);
     }
+
+    /**
+     * Set the login status of user as false
+     * Clear all the previously set user properties
+     */
+    public void logoutUser() {
+        updateLoginStatusInSharedPref("false");
+    }
+
 
 }

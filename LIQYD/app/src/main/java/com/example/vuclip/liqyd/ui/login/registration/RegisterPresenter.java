@@ -2,8 +2,6 @@ package com.example.vuclip.liqyd.ui.login.registration;
 
 import android.text.TextUtils;
 
-import com.example.vuclip.liqyd.helper.SharedPrefHelper;
-import com.example.vuclip.liqyd.helper.SharedPrefKeys;
 import com.example.vuclip.liqyd.user.UserManager;
 
 /**
@@ -19,7 +17,7 @@ class RegisterPresenter {
     }
 
     public void registerUser(String name, String mobile, String email, String password) {
-        UserManager.getInstance().registerUser(name, mobile, email, password);
+        UserManager.getInstance().updateUserProperties(name, mobile, email, password);
     }
 
     public boolean validEntries(String name, String mobile, String email, String password) {
