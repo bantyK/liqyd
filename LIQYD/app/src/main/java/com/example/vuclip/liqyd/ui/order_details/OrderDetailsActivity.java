@@ -1,5 +1,6 @@
 package com.example.vuclip.liqyd.ui.order_details;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.vuclip.liqyd.R;
+import com.example.vuclip.liqyd.helper.IntentExtras;
+import com.example.vuclip.liqyd.models.Product;
 import com.example.vuclip.liqyd.ui.BaseActivity;
 
 import java.util.Arrays;
@@ -17,8 +20,9 @@ import java.util.List;
 
 public class OrderDetailsActivity extends BaseActivity {
     private static final String TAG = "OrderDetailsActivity";
-    private TextView orderQuantity;
-    private ImageView backButton;
+    private TextView orderQuantity, productName, productPrice, totalPrice;
+    private ImageView backButton, productImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +34,24 @@ public class OrderDetailsActivity extends BaseActivity {
 
     }
 
+    private Product getProductFromIntent() {
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(IntentExtras.PRODUCT)) {
+            return (Product) intent.getExtras().get(IntentExtras.PRODUCT);
+        }
+        return null;
+    }
+
     private void initUIElements() {
         Button quantityPlusButton = findViewById(R.id.quantity_plus_button);
         Button quantityMinusButton = findViewById(R.id.quantity_minus_button);
         orderQuantity = findViewById(R.id.order_quantity);
         backButton = findViewById(R.id.iv_back_button);
+        productImage = findViewById(R.id.product_image);
+        productPrice = findViewById(R.id.product_price);
+        productName = findViewById(R.id.product_name);
+        totalPrice = findViewById(R.id.total_price);
+
 
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
@@ -43,10 +60,12 @@ public class OrderDetailsActivity extends BaseActivity {
                 switch (v.getId()) {
                     case R.id.quantity_plus_button:
                         currentQuantityValue = currentQuantityValue + 1;
+                        updateTotalCost(currentQuantityValue);
                         break;
                     case R.id.quantity_minus_button:
                         if (currentQuantityValue != 2)
                             currentQuantityValue = currentQuantityValue - 1;
+                        updateTotalCost(currentQuantityValue);
                         break;
                     case R.id.iv_back_button:
                         Log.d(TAG, "onClick: back button clicked");
@@ -61,6 +80,14 @@ public class OrderDetailsActivity extends BaseActivity {
         quantityMinusButton.setOnClickListener(clickListener);
         backButton.setOnClickListener(clickListener);
 
+        //populate the UI elements with the product details
+        setUpUI(getProductFromIntent());
+    }
+
+    private void updateTotalCost(int currentQuantityValue) {
+        double price = Double.parseDouble(getProductFromIntent().getPrice());
+        double newPrice = price * currentQuantityValue;
+        setPrice(String.valueOf(newPrice), totalPrice);
     }
 
 
@@ -72,7 +99,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
     private void setUpDeliverySlotAdapter(Spinner spinner, List<String> spinnerData) {
         ArrayAdapter<String> deliverySlotAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerData);
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerData);
         spinner.setAdapter(deliverySlotAdapter);
     }
 
@@ -80,5 +107,23 @@ public class OrderDetailsActivity extends BaseActivity {
     @Override
     protected int getLayoutResource() {
         return R.layout.layout_order_details_activity;
+    }
+
+    public void setUpUI(Product product) {
+        if (productName != null && productPrice != null && productImage != null) {
+            productName.setText(product.getName());
+            setPrice(product.getPrice(), productPrice);
+            productImage.setImageResource(product.getDrawableImage());
+            setPrice(getInitialPrice(product.getPrice()), totalPrice);
+        }
+    }
+
+    private String getInitialPrice(String price) {
+        return String.valueOf(Double.parseDouble(price) * 2);
+    }
+
+    private void setPrice(String price, TextView view) {
+        if (view != null)
+            view.setText(String.format("%s %s", getString(R.string.rupees), price));
     }
 }

@@ -18,10 +18,15 @@ public class Repository {
         Product product = new Product();
         product.setDrawableImage(R.drawable.bottle);
         product.setName("Bisleri 20 Ltr");
-        product.setPrice("Rs 55");
+        product.setPrice("70");
+        productList.add(product);
 
-        productList.add(product);
-        productList.add(product);
+        Product product2 = new Product();
+        product2.setDrawableImage(R.drawable.bottle);
+        product2.setName("Aquaravi 20 Ltr");
+        product2.setPrice("55");
+        productList.add(product2);
+
         productList.add(product);
 
         return new DataProvider(productList);
