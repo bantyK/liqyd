@@ -14,6 +14,7 @@ import com.example.vuclip.liqyd.R;
 import com.example.vuclip.liqyd.helper.IntentExtras;
 import com.example.vuclip.liqyd.models.Product;
 import com.example.vuclip.liqyd.ui.BaseActivity;
+import com.example.vuclip.liqyd.ui.payment.PaymentActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +23,7 @@ public class OrderDetailsActivity extends BaseActivity {
     private static final String TAG = "OrderDetailsActivity";
     private TextView orderQuantity, productName, productPrice, totalPrice;
     private ImageView backButton, productImage;
+    private Button proceedPayButton;
 
 
     @Override
@@ -51,7 +53,7 @@ public class OrderDetailsActivity extends BaseActivity {
         productPrice = findViewById(R.id.product_price);
         productName = findViewById(R.id.product_name);
         totalPrice = findViewById(R.id.total_price);
-
+        proceedPayButton = findViewById(R.id.proceed_to_pay);
 
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
@@ -71,6 +73,9 @@ public class OrderDetailsActivity extends BaseActivity {
                         Log.d(TAG, "onClick: back button clicked");
                         finish();
                         break;
+                    case R.id.proceed_to_pay:
+                        launchPaymentActivity(getProductFromIntent());
+                        break;
                 }
 
                 orderQuantity.setText(String.valueOf(currentQuantityValue));
@@ -79,9 +84,16 @@ public class OrderDetailsActivity extends BaseActivity {
         quantityPlusButton.setOnClickListener(clickListener);
         quantityMinusButton.setOnClickListener(clickListener);
         backButton.setOnClickListener(clickListener);
+        proceedPayButton.setOnClickListener(clickListener);
 
         //populate the UI elements with the product details
         setUpUI(getProductFromIntent());
+    }
+
+    private void launchPaymentActivity(Product product) {
+        Intent intent = new Intent(this, PaymentActivity.class);
+        intent.putExtra(IntentExtras.PRODUCT, product);
+        startActivity(intent);
     }
 
     private void updateTotalCost(int currentQuantityValue) {

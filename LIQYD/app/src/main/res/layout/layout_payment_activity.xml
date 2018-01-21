@@ -38,6 +38,7 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
+
                 <EditText
                     android:id="@+id/et_delivery_address"
                     android:layout_width="match_parent"
@@ -77,6 +78,15 @@
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/product_details_label"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#c0c0c0" />
 
                 <ImageView
                     android:id="@+id/product_image"
@@ -145,6 +155,17 @@
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/price_details_label"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="#c0c0c0" />
+
 
                 <TextView
                     android:id="@+id/price"
