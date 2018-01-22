@@ -58,7 +58,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     private void putValuesInViewHolder(ViewHolder holder, Product product) {
         holder.productImage.setImageResource(product.getDrawableImage());
         holder.productName.setText(product.getName());
-        holder.productPrice.setText(product.getPrice());
+        holder.productPrice.setText(String.format("%s %s", mContext.getString(R.string.rupees), product.getPrice()));
     }
 
     @Override
