@@ -74,7 +74,8 @@ public class OrderDetailsActivity extends BaseActivity {
                         finish();
                         break;
                     case R.id.proceed_to_pay:
-                        launchPaymentActivity(getProductFromIntent());
+                        Log.d(TAG, "onClick: quantity : " + currentQuantityValue);
+                        launchPaymentActivity(getProductFromIntent(), currentQuantityValue);
                         break;
                 }
 
@@ -90,9 +91,10 @@ public class OrderDetailsActivity extends BaseActivity {
         setUpUI(getProductFromIntent());
     }
 
-    private void launchPaymentActivity(Product product) {
+    private void launchPaymentActivity(Product product, int quantity) {
         Intent intent = new Intent(this, PaymentActivity.class);
         intent.putExtra(IntentExtras.PRODUCT, product);
+        intent.putExtra(IntentExtras.QUANTITY, quantity);
         startActivity(intent);
     }
 
@@ -122,7 +124,7 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     public void setUpUI(Product product) {
-        if (productName != null && productPrice != null && productImage != null) {
+        if (product != null && productName != null && productPrice != null && productImage != null) {
             productName.setText(product.getName());
             setPrice(product.getPrice(), productPrice);
             productImage.setImageResource(product.getDrawableImage());

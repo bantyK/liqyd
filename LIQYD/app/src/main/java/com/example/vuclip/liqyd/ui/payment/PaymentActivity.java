@@ -3,6 +3,7 @@ package com.example.vuclip.liqyd.ui.payment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -11,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vuclip.liqyd.R;
+import com.example.vuclip.liqyd.helper.IntentExtras;
 import com.example.vuclip.liqyd.helper.SharedPrefHelper;
+import com.example.vuclip.liqyd.models.Product;
 import com.example.vuclip.liqyd.ui.BaseActivity;
 import com.example.vuclip.liqyd.ui.address.AddressActivity;
 import com.example.vuclip.liqyd.user.UserConstants;
@@ -19,11 +22,15 @@ import com.example.vuclip.liqyd.user.UserManager;
 
 public class PaymentActivity extends BaseActivity {
 
+    private static final String TAG = "PaymentActivity";
+
     private CheckBox promoCodeCheckBox;
     private EditText promoCodeEditText;
     private ImageView backButton;
-    private TextView changeAddressButton;
+    private TextView changeAddressTextView, productNameTextView, quantityTextView, priceSingleItemTextView;
+    private TextView orderTotalAmountTextView, amountPayableTextView, totalAmountTextView;
     private EditText addressEditText;
+    private ImageView productImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +44,51 @@ public class PaymentActivity extends BaseActivity {
         promoCodeCheckBox = findViewById(R.id.cb_promo_code);
         promoCodeEditText = findViewById(R.id.et_promo_code);
         backButton = findViewById(R.id.iv_back_button);
-        changeAddressButton = findViewById(R.id.change_address);
+        changeAddressTextView = findViewById(R.id.change_address);
         addressEditText = findViewById(R.id.et_delivery_address);
+        priceSingleItemTextView = findViewById(R.id.price_one_item);
+        orderTotalAmountTextView = findViewById(R.id.order_total_amount);
+        amountPayableTextView = findViewById(R.id.amount_payable);
+        totalAmountTextView = findViewById(R.id.total_amount_payable);
+
+        productImage = findViewById(R.id.product_image);
+        productNameTextView = findViewById(R.id.product_name);
+        quantityTextView = findViewById(R.id.quantity);
 
         registerCheckboxListener();
         registerClickListener(backButton);
-        registerClickListener(changeAddressButton);
+        registerClickListener(changeAddressTextView);
 
+        setUpUI();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         setUpDefaultAddress(addressEditText);
+    }
+
+    private void setUpUI() {
+        Product product = getProductFromIntent();
+        if (product != null) {
+            productNameTextView.setText(product.getName());
+            productImage.setImageResource(product.getDrawableImage());
+            int quantityFromIntent = getQuantityFromIntent();
+            quantityTextView.setText(String.valueOf(quantityFromIntent));
+            String singleItemPrice = product.getPrice();
+            priceSingleItemTextView.setText(String.format("%s %s", getString(R.string.rupees), String.valueOf(singleItemPrice)));
+            orderTotalAmountTextView.setText(getTotalAmountPayableFormattedString(quantityFromIntent, singleItemPrice));
+            amountPayableTextView.setText(getTotalAmountPayableFormattedString(quantityFromIntent, singleItemPrice));
+            totalAmountTextView.setText(getTotalAmountPayableFormattedString(quantityFromIntent, singleItemPrice));
+        }
+    }
+
+    private String getTotalAmountPayableFormattedString(int quantityFromIntent, String singleItemPrice) {
+        return String.format("%s %s", getString(R.string.rupees), String.valueOf(getTotalAmount(quantityFromIntent, singleItemPrice)));
+    }
+
+    private double getTotalAmount(int quantity, String singleItemPrice) {
+        return quantity * Double.parseDouble(singleItemPrice);
     }
 
     private void setUpDefaultAddress(EditText addressEditText) {
@@ -100,5 +144,23 @@ public class PaymentActivity extends BaseActivity {
     @Override
     protected int getLayoutResource() {
         return R.layout.layout_payment_activity;
+    }
+
+    private Product getProductFromIntent() {
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(IntentExtras.PRODUCT)) {
+            return (Product) intent.getExtras().get(IntentExtras.PRODUCT);
+        }
+        return null;
+    }
+
+    private int getQuantityFromIntent() {
+        Intent intent = getIntent();
+        int quantity = 0;
+        if (intent != null && intent.hasExtra(IntentExtras.QUANTITY)) {
+            quantity = intent.getIntExtra(IntentExtras.QUANTITY, 0);
+        }
+        Log.d(TAG, "getQuantityFromIntent: quantity from intent : " + quantity);
+        return quantity;
     }
 }

@@ -6,4 +6,5 @@ package com.example.vuclip.liqyd.helper;
 
 public class IntentExtras {
     public static final String PRODUCT = "product";
+    public static final String QUANTITY = "quantity";
 }
