@@ -40,7 +40,7 @@
 
 
                 <TextView
-                    android:id="@+id/et_delivery_address"
+                    android:id="@+id/tv_delivery_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -52,7 +52,7 @@
                     android:id="@+id/change_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/et_delivery_address"
+                    android:layout_below="@id/tv_delivery_address"
                     android:layout_centerHorizontal="true"
                     android:text="@string/change_address"
                     android:textAllCaps="true"

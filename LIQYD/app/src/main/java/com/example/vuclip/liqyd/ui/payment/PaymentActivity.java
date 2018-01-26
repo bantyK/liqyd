@@ -53,7 +53,7 @@ public class PaymentActivity extends BaseActivity {
         promoCodeEditText = findViewById(R.id.et_promo_code);
         backButton = findViewById(R.id.iv_back_button);
         changeAddressTextView = findViewById(R.id.change_address);
-        addressTextView = findViewById(R.id.et_delivery_address);
+        addressTextView = findViewById(R.id.tv_delivery_address);
         priceSingleItemTextView = findViewById(R.id.price_one_item);
         orderTotalAmountTextView = findViewById(R.id.order_total_amount);
         amountPayableTextView = findViewById(R.id.amount_payable);
@@ -74,11 +74,12 @@ public class PaymentActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setUpDefaultAddress(addressTextView);
+        Log.d(TAG, "onResume: called");
     }
 
     private void setUpUI() {
         Product product = getProductFromIntent();
+        setUpDefaultAddress(addressTextView);
         if (product != null) {
             productNameTextView.setText(product.getName());
             productImage.setImageResource(product.getDrawableImage());
@@ -144,7 +145,7 @@ public class PaymentActivity extends BaseActivity {
 
     private void launchAddressActivity() {
         Intent intent = new Intent(PaymentActivity.this, AddressActivity.class);
-        startActivityForResult(intent, Activity.RESULT_OK);
+        startActivityForResult(intent, 2);
     }
 
     private void registerCheckboxListener() {
@@ -185,8 +186,7 @@ public class PaymentActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(this, "onActivity start called", Toast.LENGTH_SHORT).show();
-        if (resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == 2 && data != null) {
             if (validIntent(data)) {
                 addressTextView.setText(
                         MessageFormat.format("{0},{1}\n{2},{3}, {4}",
@@ -196,8 +196,6 @@ public class PaymentActivity extends BaseActivity {
                                 getString(R.string.pune),
                                 getString(R.string.maharashtra)));
             }
-        } else {
-            Toast.makeText(PaymentActivity.this, "invalid", Toast.LENGTH_LONG).show();
         }
     }
 
