@@ -2,7 +2,7 @@
     <string name="app_name">LIQYD</string>
     <string name="address">Address</string>
     <string name="order_details">ORDER DETAILS</string>
-    <string name="layout_payment_activity">PAYMENT</string>
+    <string name="payment">PAYMENT</string>
     <string name="mobile_number">Mobile No</string>
     <string name="password">Password</string>
     <string name="login">LOG IN</string>

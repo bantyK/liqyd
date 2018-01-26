@@ -36,7 +36,7 @@ public class PaymentActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_payment_activity);
-        configureToolbar(getString(R.string.layout_payment_activity), true);
+        configureToolbar(getString(R.string.payment), true);
         initUIElements();
     }
 
