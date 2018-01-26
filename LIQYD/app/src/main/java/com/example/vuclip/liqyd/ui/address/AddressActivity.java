@@ -1,6 +1,10 @@
 package com.example.vuclip.liqyd.ui.address;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -8,7 +12,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.vuclip.liqyd.R;
+import com.example.vuclip.liqyd.helper.SharedPrefHelper;
 import com.example.vuclip.liqyd.ui.BaseActivity;
+import com.example.vuclip.liqyd.user.UserConstants;
 import com.example.vuclip.liqyd.user.UserManager;
 
 public class AddressActivity extends BaseActivity {
@@ -24,6 +30,22 @@ public class AddressActivity extends BaseActivity {
         setContentView(R.layout.layout_address_activity);
         configureToolbar(getString(R.string.address), true);
         initUIElements();
+        checkAndPrePopulateAddress();
+    }
+
+    private void checkAndPrePopulateAddress() {
+        if (addressSaved()) {
+            address1.setText(SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_1, ""));
+            address2.setText(SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_2, ""));
+            landmark.setText(SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_LANDMARK, ""));
+        }
+    }
+
+    private boolean addressSaved() {
+        return !(TextUtils.isEmpty(SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_1, "")) &&
+                TextUtils.isEmpty(SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_2, "")) &&
+                TextUtils.isEmpty(SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_LANDMARK, ""))
+        );
     }
 
     private void initUIElements() {
@@ -49,12 +71,20 @@ public class AddressActivity extends BaseActivity {
                         break;
 
                     case R.id.save_button:
-                        if (defaultAddressCheckbox.isChecked())
+                        if (defaultAddressCheckbox.isChecked()) {
                             UserManager.getInstance().saveUserAddress(
                                     address1.getText().toString(),
                                     address2.getText().toString(),
-                                    landmark.getText().toString()
-                            );
+                                    landmark.getText().toString());
+                        } else {
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra(UserConstants.USER_ADDRESS_1, address1.getText().toString());
+                            resultIntent.putExtra(UserConstants.USER_ADDRESS_2, address2.getText().toString());
+                            resultIntent.putExtra(UserConstants.USER_ADDRESS_LANDMARK, landmark.getText().toString());
+                            setResult(Activity.RESULT_OK, resultIntent);
+                            Log.d(TAG, "setResult: called");
+                            finish();
+                        }
                         finish();
                         break;
                 }
@@ -65,5 +95,17 @@ public class AddressActivity extends BaseActivity {
     @Override
     protected int getLayoutResource() {
         return R.layout.layout_address_activity;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: called");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: called");
     }
 }

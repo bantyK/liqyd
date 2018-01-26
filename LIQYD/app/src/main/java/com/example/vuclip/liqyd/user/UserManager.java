@@ -56,12 +56,12 @@ public class UserManager {
     public void saveUserAddress(String addressLine1, String addressLine2, String landmark) {
         SharedPrefHelper.putPref(UserConstants.USER_ADDRESS_1, addressLine1);
         SharedPrefHelper.putPref(UserConstants.USER_ADDRESS_2, addressLine2);
-        SharedPrefHelper.putPref(UserConstants.USER_LANDMARK, landmark);
+        SharedPrefHelper.putPref(UserConstants.USER_ADDRESS_LANDMARK, landmark);
     }
 
     public boolean defaultAddressSet() {
         return SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_1, null) != null &&
                 SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_2, null) != null &&
-                SharedPrefHelper.getPref(UserConstants.USER_LANDMARK, null) != null;
+                SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_LANDMARK, null) != null;
     }
 }

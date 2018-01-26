@@ -1,15 +1,20 @@
 package com.example.vuclip.liqyd.ui.payment;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vuclip.liqyd.R;
 import com.example.vuclip.liqyd.helper.IntentExtras;
@@ -20,6 +25,8 @@ import com.example.vuclip.liqyd.ui.address.AddressActivity;
 import com.example.vuclip.liqyd.user.UserConstants;
 import com.example.vuclip.liqyd.user.UserManager;
 
+import java.text.MessageFormat;
+
 public class PaymentActivity extends BaseActivity {
 
     private static final String TAG = "PaymentActivity";
@@ -28,9 +35,11 @@ public class PaymentActivity extends BaseActivity {
     private EditText promoCodeEditText;
     private ImageView backButton;
     private TextView changeAddressTextView, productNameTextView, quantityTextView, priceSingleItemTextView;
-    private TextView orderTotalAmountTextView, amountPayableTextView, totalAmountTextView;
-    private EditText addressEditText;
+    private TextView orderTotalAmountTextView, amountPayableTextView, totalAmountTextView, addressTextView;
+
     private ImageView productImage;
+    private Button placeOrderButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +54,12 @@ public class PaymentActivity extends BaseActivity {
         promoCodeEditText = findViewById(R.id.et_promo_code);
         backButton = findViewById(R.id.iv_back_button);
         changeAddressTextView = findViewById(R.id.change_address);
-        addressEditText = findViewById(R.id.et_delivery_address);
+        addressTextView = findViewById(R.id.et_delivery_address);
         priceSingleItemTextView = findViewById(R.id.price_one_item);
         orderTotalAmountTextView = findViewById(R.id.order_total_amount);
         amountPayableTextView = findViewById(R.id.amount_payable);
         totalAmountTextView = findViewById(R.id.total_amount_payable);
-
+        placeOrderButton = findViewById(R.id.place_order_button);
         productImage = findViewById(R.id.product_image);
         productNameTextView = findViewById(R.id.product_name);
         quantityTextView = findViewById(R.id.quantity);
@@ -58,6 +67,7 @@ public class PaymentActivity extends BaseActivity {
         registerCheckboxListener();
         registerClickListener(backButton);
         registerClickListener(changeAddressTextView);
+        registerClickListener(placeOrderButton);
 
         setUpUI();
     }
@@ -65,7 +75,8 @@ public class PaymentActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setUpDefaultAddress(addressEditText);
+        Log.d(TAG, "onResume: called");
+        setUpDefaultAddress(addressTextView);
     }
 
     private void setUpUI() {
@@ -91,11 +102,11 @@ public class PaymentActivity extends BaseActivity {
         return quantity * Double.parseDouble(singleItemPrice);
     }
 
-    private void setUpDefaultAddress(EditText addressEditText) {
+    private void setUpDefaultAddress(TextView addressTextView) {
         if (UserManager.getInstance().defaultAddressSet()) {
-            addressEditText.setText(getUserAddress());
+            addressTextView.setText(getUserAddress());
         } else {
-            addressEditText.setText("");
+            addressTextView.setText("");
         }
     }
 
@@ -103,8 +114,8 @@ public class PaymentActivity extends BaseActivity {
     private String getUserAddress() {
         return SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_1, "") + "," +
                 SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_2, null) + "\n" +
-                SharedPrefHelper.getPref(UserConstants.USER_LANDMARK, null) + "," +
-                getString(R.string.pune) + " " + getString(R.string.maharashtra);
+                SharedPrefHelper.getPref(UserConstants.USER_ADDRESS_LANDMARK, null) + "," +
+                getString(R.string.pune) + ", " + getString(R.string.maharashtra);
     }
 
     private void registerClickListener(View view) {
@@ -118,14 +129,24 @@ public class PaymentActivity extends BaseActivity {
                     case R.id.change_address:
                         launchAddressActivity();
                         break;
+                    case R.id.place_order_button:
+                        placeOrderClick();
                 }
             }
         });
     }
 
+    private void placeOrderClick() {
+        if (TextUtils.isEmpty(addressTextView.getText().toString().trim())) {
+            Toast.makeText(this, "Please provide delivery address", Toast.LENGTH_SHORT).show();
+        } else {
+
+        }
+    }
+
     private void launchAddressActivity() {
-        Intent intent = new Intent(this, AddressActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(PaymentActivity.this, AddressActivity.class);
+        startActivityForResult(intent, Activity.RESULT_OK);
     }
 
     private void registerCheckboxListener() {
@@ -162,5 +183,36 @@ public class PaymentActivity extends BaseActivity {
         }
         Log.d(TAG, "getQuantityFromIntent: quantity from intent : " + quantity);
         return quantity;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult: called");
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            if (validIntent(data)) {
+                addressTextView.setText(
+                        MessageFormat.format("{0},{1}\n{2},{3}, {4}",
+                                data.getStringExtra(UserConstants.USER_ADDRESS_1),
+                                data.getStringExtra(UserConstants.USER_ADDRESS_2),
+                                data.getStringExtra(UserConstants.USER_ADDRESS_LANDMARK),
+                                getString(R.string.pune),
+                                getString(R.string.maharashtra)));
+            }
+        }
+    }
+
+    private boolean validIntent(Intent data) {
+        return data != null &&
+                data.getExtras() != null &&
+                data.getExtras().containsKey(UserConstants.USER_ADDRESS_1) &&
+                data.getExtras().containsKey(UserConstants.USER_ADDRESS_2) &&
+                data.getExtras().containsKey(UserConstants.USER_ADDRESS_LANDMARK);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: called");
     }
 }
