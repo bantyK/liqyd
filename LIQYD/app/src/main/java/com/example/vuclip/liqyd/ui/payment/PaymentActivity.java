@@ -198,6 +198,8 @@ public class PaymentActivity extends BaseActivity {
                                 getString(R.string.pune),
                                 getString(R.string.maharashtra)));
             }
+        } else {
+            Toast.makeText(PaymentActivity.this, "invalid", Toast.LENGTH_LONG).show();
         }
     }
 
