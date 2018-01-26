@@ -187,8 +187,7 @@ public class PaymentActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "onActivityResult: called");
-        super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(this, "onActivity start called", Toast.LENGTH_SHORT).show();
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (validIntent(data)) {
                 addressTextView.setText(
