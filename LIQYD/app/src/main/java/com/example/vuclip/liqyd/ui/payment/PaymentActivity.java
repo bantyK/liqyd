@@ -1,6 +1,5 @@
 package com.example.vuclip.liqyd.ui.payment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vuclip.liqyd.R;
+import com.example.vuclip.liqyd.database.DatabaseManager;
 import com.example.vuclip.liqyd.helper.IntentExtras;
 import com.example.vuclip.liqyd.helper.SharedPrefHelper;
 import com.example.vuclip.liqyd.models.Product;
@@ -139,7 +139,9 @@ public class PaymentActivity extends BaseActivity {
         if (TextUtils.isEmpty(addressTextView.getText().toString().trim())) {
             Toast.makeText(this, "Please provide delivery address", Toast.LENGTH_SHORT).show();
         } else {
+            //if payment is successful
 
+            DatabaseManager.insert(getProductFromIntent(), System.currentTimeMillis());
         }
     }
 

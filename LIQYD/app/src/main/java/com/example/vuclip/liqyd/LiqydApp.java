@@ -25,4 +25,5 @@ public class LiqydApp extends Application {
         super.onCreate();
         instance = this;
     }
+
 }
