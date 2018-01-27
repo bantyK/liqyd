@@ -103,8 +103,6 @@ public class NavigationDrawerHelper {
     private void loadFragment(final int navItemIndex) {
         selectNavMenu();
 
-        setToolbarTitle();
-
         Runnable mPendingRunnable = new Runnable() {
             @Override
             public void run() {
@@ -124,13 +122,6 @@ public class NavigationDrawerHelper {
 
     private void selectNavMenu() {
         navigationView.getMenu().getItem(navItemIndex).setChecked(true);
-    }
-
-    private void setToolbarTitle() {
-        // TODO: 21/01/18 set correct name to the toolbar according to the fragment loaded
-        ActionBar supportActionBar = ((GallaryActivity) detailActivity).getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setTitle("Fragment : " + navItemIndex);
     }
 
 }

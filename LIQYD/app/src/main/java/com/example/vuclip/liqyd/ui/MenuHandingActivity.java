@@ -21,6 +21,8 @@ import com.example.vuclip.liqyd.user.UserManager;
 
 public class MenuHandingActivity extends BaseActivity {
 
+    private static final int[] FRAGMENT_NAMES = {R.string.nav_order_history, R.string.nav_terms_conditions, R.string.nav_sign_out};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +30,11 @@ public class MenuHandingActivity extends BaseActivity {
         handleUIElements();
         Intent intent = getIntent();
         int navIndex = 0;
-        if (intent != null && intent.getExtras().containsKey(NavigationDrawerHelper.INTENT_KEY)) {
+        if (intent != null && intent.getExtras() != null && intent.getExtras().containsKey(NavigationDrawerHelper.INTENT_KEY)) {
             navIndex = intent.getIntExtra(NavigationDrawerHelper.INTENT_KEY, 0);
             setFragment(navIndex);
         }
-        configureToolbar(getTag(navIndex), true);
+        configureToolbar(getString(FRAGMENT_NAMES[navIndex]).toUpperCase(), true);
     }
 
     private void handleUIElements() {
@@ -85,7 +87,6 @@ public class MenuHandingActivity extends BaseActivity {
             case 1:
                 return new TermsConditionsFragment();
             case 2:
-                Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show();
                 UserManager.getInstance().logoutUser();
                 launchLoginScreen();
                 return null;
