@@ -32,7 +32,6 @@ public class NavigationDrawerHelper {
     private final NavigationView navigationView;
     private final ActionBarDrawerToggle actionBarDrawerToggle;
     private Handler mHandler;
-    private String CURRENT_TAG;
     private int navItemIndex = 0;
     private final Activity detailActivity;
 
@@ -63,12 +62,10 @@ public class NavigationDrawerHelper {
                 switch (item.getItemId()) {
                     case R.id.nav_order_history:
                         navItemIndex = 0;
-                        CURRENT_TAG = TAG_ORDER_HISTORY;
                         break;
 
                     case R.id.nav_terms_conditions:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_TERMS_CONDITIONS;
                         break;
 
                     case R.id.nav_sign_out:
