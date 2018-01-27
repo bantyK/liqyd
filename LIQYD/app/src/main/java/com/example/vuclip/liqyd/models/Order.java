@@ -20,6 +20,12 @@ public class Order {
     @ColumnInfo(name = "purchase_date")
     private String purchaseDate;
 
+    @ColumnInfo(name = "product_image")
+    private int productImageResource;
+
+    @ColumnInfo(name = "total_amount")
+    private double totalAmountPaid;
+
     public int getOrderId() {
         return orderId;
     }
@@ -42,5 +48,21 @@ public class Order {
 
     public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
+    }
+
+    public int getProductImageResource() {
+        return productImageResource;
+    }
+
+    public void setProductImageResource(int productImageResource) {
+        this.productImageResource = productImageResource;
+    }
+
+    public double getTotalAmountPaid() {
+        return totalAmountPaid;
+    }
+
+    public void setTotalAmountPaid(double totalAmountPaid) {
+        this.totalAmountPaid = totalAmountPaid;
     }
 }

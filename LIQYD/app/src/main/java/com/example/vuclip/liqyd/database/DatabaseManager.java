@@ -8,10 +8,12 @@ import com.example.vuclip.liqyd.models.Product;
  */
 
 public class DatabaseManager {
-    public static void insert(Product product, long purchaseTime) {
+    public static void insert(Product product, long purchaseTime, double totalAmount) {
         final Order order = new Order();
         order.setProductName(product.getName());
         order.setPurchaseDate(String.valueOf(purchaseTime));
+        order.setProductImageResource(product.getDrawableImage());
+        order.setTotalAmountPaid(totalAmount);
         new Thread(new Runnable() {
             @Override
             public void run() {

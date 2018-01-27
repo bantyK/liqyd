@@ -14,7 +14,7 @@ import java.util.List;
 
 public class OrderHistoryDataProvider {
 
-    OrderHistoryDataListener mOrderHistoryDataListener;
+    private OrderHistoryDataListener mOrderHistoryDataListener;
 
     public OrderHistoryDataProvider(OrderHistoryDataListener listener) {
         this.mOrderHistoryDataListener = listener;

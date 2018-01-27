@@ -47,6 +47,9 @@
     <string name="enter_promo_code">Enter Promo Code Here</string>
     <string name="rupees">Rs.</string>
     <string name="save">SAVE</string>
+    <string name="order_placed_label">Order Placed:</string>
+    <string name="product_name_label">Product name:</string>
+    <string name="no_purchase_made_yet">No purchase made yet</string>
 
     <string-array name="delivery_areas">
         <item>Baner</item>

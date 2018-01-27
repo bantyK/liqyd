@@ -74,12 +74,11 @@ public class PaymentActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: called");
+        setUpDefaultAddress(addressTextView);
     }
 
     private void setUpUI() {
         Product product = getProductFromIntent();
-        setUpDefaultAddress(addressTextView);
         if (product != null) {
             productNameTextView.setText(product.getName());
             productImage.setImageResource(product.getDrawableImage());
@@ -141,7 +140,7 @@ public class PaymentActivity extends BaseActivity {
         } else {
             //if payment is successful
 
-            DatabaseManager.insert(getProductFromIntent(), System.currentTimeMillis());
+            DatabaseManager.insert(getProductFromIntent(), System.currentTimeMillis(), getTotalAmount(getQuantityFromIntent(), getProductFromIntent().getPrice()));
         }
     }
 
