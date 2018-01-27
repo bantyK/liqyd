@@ -1,11 +1,7 @@
 package com.example.vuclip.liqyd.database;
 
-import android.content.Context;
-
 import com.example.vuclip.liqyd.models.Order;
 import com.example.vuclip.liqyd.models.Product;
-
-import java.util.List;
 
 /**
  * Created by Banty on 26/01/18.
