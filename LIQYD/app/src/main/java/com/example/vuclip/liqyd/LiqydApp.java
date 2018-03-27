@@ -13,7 +13,7 @@ public class LiqydApp extends Application {
 
     public static LiqydApp getAppInstance() {
         if (instance == null) {
-            RuntimeException runtimeException = new RuntimeException("Application not initialized. Check Manifest maybe?");
+            RuntimeException runtimeException = new RuntimeException("Application not initialized.");
             Log.e(TAG, "", runtimeException);
             throw runtimeException;
         }
